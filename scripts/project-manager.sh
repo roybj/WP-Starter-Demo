@@ -62,6 +62,12 @@ start_project() {
         exit 1
     fi
     
+    # Ensure shared network exists
+    if ! docker network ls --filter name=wordpress-shared --format "{{.Name}}" | grep -q "^wordpress-shared$"; then
+        print_info "🌐 Creating shared network: wordpress-shared"
+        docker network create wordpress-shared
+    fi
+    
     # Use multi-project compose if available, otherwise fallback
     if [ -f "config/docker-compose.multi.yml" ]; then
         cp config/docker-compose.multi.yml docker-compose.yml

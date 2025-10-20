@@ -82,6 +82,14 @@ docker-compose -f docker-compose.mailhog.yml up -d
 # All projects can now send/test emails
 ```
 
+### 🛠️ **Prerequisites & Setup**
+
+**One-time setup required** - Create the shared network:
+```bash
+# Create shared network for all WordPress projects
+docker network create wordpress-shared
+```
+
 ### 🛠️ **Project Management Commands**
 
 | Platform | Start | Stop | Status |

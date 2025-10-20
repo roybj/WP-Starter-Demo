@@ -3,7 +3,18 @@
 ## 📋 Overview
 Each WordPress project is a **copy of this repository** with its own `.env` configuration. You manage the lifecycle with simple scripts.
 
-## 🛠️ Setup New Project (5 minutes)
+## � Prerequisites
+
+### One-Time Setup (Required)
+
+**Create the shared Docker network** (required for all projects):
+```bash
+docker network create wordpress-shared
+```
+
+This network allows WordPress projects to communicate with shared services like MailHog.
+
+## �🛠️ Setup New Project (5 minutes)
 
 ### 1. Copy Repository
 ```bash
@@ -95,6 +106,17 @@ cd ~/projects/ecommerce-store
 ```
 
 ## 🔧 Troubleshooting
+
+### Network Issues
+If you see "network wordpress-shared declared as external, but could not be found":
+```bash
+# Create the missing shared network
+docker network create wordpress-shared
+
+# Then restart your project
+docker-compose down
+docker-compose up -d
+```
 
 ### Port Conflicts
 ```bash

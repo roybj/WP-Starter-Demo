@@ -51,6 +51,17 @@ Each project gets completely isolated Docker containers with unique names and po
 - Docker Compose v2+
 - At least 4GB RAM allocated to Docker
 
+#### 0. One-Time Network Setup (Required)
+```bash
+# Create the shared network (required for all projects)
+docker network create wordpress-shared
+```
+
+This shared network is required for:
+- WordPress projects to communicate with shared services (like MailHog)
+- Proper container isolation and networking
+- Cross-project service communication
+
 #### 1. Start the Environment
 ```bash
 # Clone the repository (if not already done)
@@ -351,6 +362,26 @@ docker-compose restart mysql
 ```
 
 ## 🔧 Troubleshooting
+
+### Network Issues
+
+**"network wordpress-shared declared as external, but could not be found" error:**
+```bash
+# Create the missing shared network
+docker network create wordpress-shared
+
+# Then restart your project
+docker-compose down
+docker-compose up -d
+```
+
+**MailHog not accessible across projects:**
+```bash
+# Start the shared MailHog service
+docker-compose -f docker-compose.mailhog.yml up -d
+
+# This also creates the wordpress-shared network
+```
 
 ### Common Issues
 

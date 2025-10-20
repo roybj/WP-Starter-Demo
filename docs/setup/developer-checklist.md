@@ -48,6 +48,12 @@ Use this checklist when setting up your local development environment.
   cd BB-WP_Template
   ```
 
+- [ ] **Create shared Docker network (One-time setup)**
+  ```bash
+  docker network create wordpress-shared
+  ```
+  This network is required for all WordPress projects to function properly.
+
 - [ ] **Review setup guides**
   - [ ] **Multi-Project**: [multi-project.md](multi-project.md) ⭐ Recommended
   - [ ] **Single Project**: [quickstart.md](quickstart.md) - Traditional setup

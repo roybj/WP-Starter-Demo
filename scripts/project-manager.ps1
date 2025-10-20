@@ -46,6 +46,14 @@ function Start-Project {
         Write-ColorText "[ERROR] .env file not found" "Red"
         exit 1
     }
+    
+    # Ensure shared network exists
+    $networkExists = docker network ls --filter name=wordpress-shared --format "{{.Name}}" | Where-Object { $_ -eq "wordpress-shared" }
+    if (-not $networkExists) {
+        Write-ColorText "[NETWORK] Creating shared network: wordpress-shared" "Blue"
+        docker network create wordpress-shared
+    }
+    
     if (Test-Path "config\docker-compose.multi.yml") {
         Copy-Item "config\docker-compose.multi.yml" "docker-compose.yml" -Force
         Write-ColorText "[CONFIG] Using multi-project configuration" "Blue"

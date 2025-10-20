@@ -9,6 +9,22 @@ This guide shows you how to quickly start running multiple WordPress projects si
 
 ---
 
+## 🔧 Prerequisites
+
+### One-Time Setup (Required)
+
+**Create the shared Docker network** before starting any projects:
+```bash
+docker network create wordpress-shared
+```
+
+This network is required for:
+- Communication between WordPress projects and shared services
+- MailHog email testing functionality
+- Proper container isolation and networking
+
+---
+
 ## 🏃‍♂️ Quick Start (5 minutes)
 
 ### Step 1: Clone the Template

@@ -7,7 +7,7 @@
 /wp-content/
 
 # Generated Files
-wp-config.php
+#wp-config.php
 .env.cached.php
 .wp-cli.local.yml
 

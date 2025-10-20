@@ -7,7 +7,7 @@ echo "🚀 Starting WordPress Development Environment..."
 
 # Wait for MySQL to be ready
 echo "⏳ Waiting for MySQL to be ready..."
-until mysqladmin ping -h mysql -u root -proot_secure_password --skip-ssl --silent; do
+until mysqladmin ping -h mysql -u root -p"${MYSQL_ROOT_PASSWORD:-root_secure_password}" --skip-ssl --silent; do
     echo "MySQL not ready yet, waiting..."
     sleep 2
 done
@@ -19,39 +19,39 @@ if [ ! -f "/var/www/html/.env" ]; then
     if [ -f "/var/www/html/.env.example" ]; then
         cp /var/www/html/.env.example /var/www/html/.env
         # Update with Docker environment values
-        sed -i "s|DB_HOST=localhost|DB_HOST=mysql|g" /var/www/html/.env
-        sed -i "s|DB_NAME=wp_database_name|DB_NAME=wordpress_dev|g" /var/www/html/.env
-        sed -i "s|DB_USER=wp_user|DB_USER=wp_user|g" /var/www/html/.env
-        sed -i "s|DB_PASSWORD=your_secure_database_password|DB_PASSWORD=wp_secure_password|g" /var/www/html/.env
-        sed -i "s|WP_HOME=https://your-domain.com|WP_HOME=http://localhost:8080|g" /var/www/html/.env
-        sed -i "s|WP_SITEURL=https://your-domain.com/wp|WP_SITEURL=http://localhost:8080/wp|g" /var/www/html/.env
-        sed -i "s|WP_ENV=development|WP_ENV=development|g" /var/www/html/.env
+        sed -i "s|DB_HOST=localhost|DB_HOST=${DB_HOST:-mysql}|g" /var/www/html/.env
+        sed -i "s|DB_NAME=wp_database_name|DB_NAME=${DB_NAME:-wordpress_dev}|g" /var/www/html/.env
+        sed -i "s|DB_USER=wp_user|DB_USER=${DB_USER:-wp_user}|g" /var/www/html/.env
+        sed -i "s|DB_PASSWORD=your_secure_database_password|DB_PASSWORD=${DB_PASSWORD:-wp_secure_password}|g" /var/www/html/.env
+        sed -i "s|WP_HOME=https://your-domain.com|WP_HOME=${WP_HOME:-http://localhost:8080}|g" /var/www/html/.env
+        sed -i "s|WP_SITEURL=https://your-domain.com/wp|WP_SITEURL=${WP_SITEURL:-http://localhost:8080/wp}|g" /var/www/html/.env
+        sed -i "s|WP_ENV=development|WP_ENV=${WP_ENV:-development}|g" /var/www/html/.env
         echo "✅ .env file created and configured for Docker"
     else
         echo "⚠️  .env.example not found, creating basic .env..."
-        cat > /var/www/html/.env << 'EOF'
-WP_ENV=development
-DB_NAME=wordpress_dev
-DB_USER=wp_user
-DB_PASSWORD=wp_secure_password
-DB_HOST=mysql
-TABLE_PREFIX=wp_
-WP_HOME=http://localhost:8080
-WP_SITEURL=http://localhost:8080/wp
-WP_DEBUG=true
-WP_DEBUG_LOG=true
-WP_DEBUG_DISPLAY=true
-DISALLOW_FILE_EDIT=true
-DISALLOW_FILE_MODS=false
-WP_MEMORY_LIMIT=512M
-AUTH_KEY='dev-auth-key-change-in-production'
-SECURE_AUTH_KEY='dev-secure-auth-key-change-in-production'
-LOGGED_IN_KEY='dev-logged-in-key-change-in-production'
-NONCE_KEY='dev-nonce-key-change-in-production'
-AUTH_SALT='dev-auth-salt-change-in-production'
-SECURE_AUTH_SALT='dev-secure-auth-salt-change-in-production'
-LOGGED_IN_SALT='dev-logged-in-salt-change-in-production'
-NONCE_SALT='dev-nonce-salt-change-in-production'
+        cat > /var/www/html/.env << EOF
+WP_ENV=${WP_ENV:-development}
+DB_NAME=${DB_NAME:-wordpress_dev}
+DB_USER=${DB_USER:-wp_user}
+DB_PASSWORD=${DB_PASSWORD:-wp_secure_password}
+DB_HOST=${DB_HOST:-mysql}
+TABLE_PREFIX=${TABLE_PREFIX:-wp_}
+WP_HOME=${WP_HOME:-http://localhost:8080}
+WP_SITEURL=${WP_SITEURL:-http://localhost:8080/wp}
+WP_DEBUG=${WP_DEBUG:-true}
+WP_DEBUG_LOG=${WP_DEBUG_LOG:-true}
+WP_DEBUG_DISPLAY=${WP_DEBUG_DISPLAY:-true}
+DISALLOW_FILE_EDIT=${DISALLOW_FILE_EDIT:-true}
+DISALLOW_FILE_MODS=${DISALLOW_FILE_MODS:-false}
+WP_MEMORY_LIMIT=${WP_MEMORY_LIMIT:-512M}
+AUTH_KEY='${AUTH_KEY:-dev-auth-key-change-in-production}'
+SECURE_AUTH_KEY='${SECURE_AUTH_KEY:-dev-secure-auth-key-change-in-production}'
+LOGGED_IN_KEY='${LOGGED_IN_KEY:-dev-logged-in-key-change-in-production}'
+NONCE_KEY='${NONCE_KEY:-dev-nonce-key-change-in-production}'
+AUTH_SALT='${AUTH_SALT:-dev-auth-salt-change-in-production}'
+SECURE_AUTH_SALT='${SECURE_AUTH_SALT:-dev-secure-auth-salt-change-in-production}'
+LOGGED_IN_SALT='${LOGGED_IN_SALT:-dev-logged-in-salt-change-in-production}'
+NONCE_SALT='${NONCE_SALT:-dev-nonce-salt-change-in-production}'
 EOF
         echo "✅ Basic .env file created"
     fi
@@ -94,11 +94,11 @@ if ! wp core is-installed --allow-root 2>/dev/null; then
     
     # Install WordPress
     wp core install \
-        --url="http://localhost:8080" \
-        --title="WordPress Development Site" \
-        --admin_user="admin" \
-        --admin_password="admin" \
-        --admin_email="admin@localhost.dev" \
+        --url="${WP_HOME:-http://localhost:8080}" \
+        --title="${WP_TITLE:-WordPress Development Site}" \
+        --admin_user="${WP_ADMIN_USER:-admin}" \
+        --admin_password="${WP_ADMIN_PASSWORD:-admin}" \
+        --admin_email="${WP_ADMIN_EMAIL:-admin@localhost.dev}" \
         --allow-root \
         --skip-email
     
@@ -144,12 +144,12 @@ fi
 # Display environment information
 echo ""
 echo "🎉 WordPress Development Environment Ready!"
-echo "📍 WordPress Site: http://localhost:8080"
-echo "📍 WordPress Admin: http://localhost:8080/wp/wp-admin/"
-echo "📍 phpMyAdmin: http://localhost:8081"
-echo "📍 MailHog: http://localhost:8025"
-echo "🔑 WordPress Admin: admin/admin"
-echo "🗄️  Database: mysql:3306 (wp_user/wp_secure_password)"
+echo "📍 WordPress Site: ${WP_HOME:-http://localhost:8080}"
+echo "📍 WordPress Admin: ${WP_HOME:-http://localhost:8080}/wp/wp-admin/"
+echo "📍 phpMyAdmin: http://localhost:${PHPMYADMIN_PORT:-8081}"
+echo "📍 MailHog: http://localhost:${MAILHOG_WEB_PORT:-8025}"
+echo "🔑 WordPress Admin: ${WP_ADMIN_USER:-admin}/${WP_ADMIN_PASSWORD:-admin}"
+echo "🗄️  Database: ${DB_HOST:-mysql}:${MYSQL_PORT:-3306} (${DB_USER:-wp_user}/${DB_PASSWORD:-wp_secure_password})"
 echo ""
 
 # Start PHP-FPM in foreground

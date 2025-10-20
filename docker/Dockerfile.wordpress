@@ -59,7 +59,7 @@ RUN chown -R www-data:www-data /var/www/html \
 COPY docker/php/php.ini /usr/local/etc/php/conf.d/wordpress.ini
 
 # Copy startup script
-COPY docker/scripts/start-simple.sh /usr/local/bin/start.sh
+COPY docker/scripts/start.sh /usr/local/bin/start.sh
 RUN chmod +x /usr/local/bin/start.sh
 
 # Expose PHP-FPM port

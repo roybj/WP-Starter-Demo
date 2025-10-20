@@ -4,7 +4,7 @@
 
 # WordPress Core (auto-installed via Composer)
 /wp/
-!/wp-content/
+/wp-content/
 
 # Generated Files
 wp-config.php

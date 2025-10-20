@@ -1,0 +1,37 @@
+version: '3.8'
+
+# ============================================================================
+# Shared MailHog Email Testing Service
+# ============================================================================
+# Run this once to provide email testing for all WordPress projects:
+# docker-compose -f docker-compose.mailhog.yml up -d
+#
+# Access: http://localhost:8025
+# SMTP: localhost:1025 (configure in WordPress)
+# ============================================================================
+
+services:
+  mailhog:
+    image: mailhog/mailhog:latest
+    container_name: shared-mailhog
+    restart: unless-stopped
+    ports:
+      - "8025:8025"   # Web interface
+      - "1025:1025"   # SMTP server
+    networks:
+      - wordpress-shared
+    environment:
+      - MH_STORAGE=maildir
+      - MH_MAILDIR_PATH=/tmp
+    volumes:
+      - mailhog_data:/tmp
+    labels:
+      - "traefik.enable=false"
+
+networks:
+  wordpress-shared:
+    driver: bridge
+    name: wordpress-shared
+
+volumes:
+  mailhog_data:

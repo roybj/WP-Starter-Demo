@@ -1,36 +1,64 @@
-# WordPress WP Starter - Scripts Directory
+# 🛠️ WordPress Project Manager Scripts
 
-This directory contains all management and automation scripts for the WordPress development environment.
+> **Cross-platform scripts for managing WordPress development projects**
 
-## 🛠️ Available Scripts
-
-### Multi-Project Management
+## � Available Scripts
 
 | Script | Platform | Purpose |
 |--------|----------|---------|
-| **project-manager.ps1** | Windows PowerShell | Full project lifecycle management |
-| **project-manager.bat** | Windows Command Prompt | Basic project management (legacy) |
-| **project-manager.sh** | Linux/macOS Bash | Full project lifecycle management |
+| **project-manager.ps1** | Windows PowerShell | Complete project lifecycle management |
+| **project-manager.sh** | Linux/macOS Bash | Complete project lifecycle management |
 
-#### Usage Examples
+## 🚀 Usage
+
+### **Windows (PowerShell)**
 ```powershell
-# PowerShell (Windows - Recommended)
-scripts\project-manager.ps1 create client-acme 8080 "ACME Corp Website"
-scripts\project-manager.ps1 start client-acme
-scripts\project-manager.ps1 list
-scripts\project-manager.ps1 ports
+# Start project (run from project directory)
+scripts\project-manager.ps1 start
 
-# Command Prompt (Windows)
-scripts\project-manager.bat create client-acme 8080 "ACME Corp Website"
-scripts\project-manager.bat start client-acme
+# Stop project
+scripts\project-manager.ps1 stop
+
+# View status
+scripts\project-manager.ps1 status
+
+# View logs
+scripts\project-manager.ps1 logs
+
+# Restart project
+scripts\project-manager.ps1 restart
+
+# MailHog email testing
+scripts\project-manager.ps1 mailhog-start
+scripts\project-manager.ps1 mailhog-stop
+
+# Help
+scripts\project-manager.ps1 help
 ```
 
+### **Linux/macOS (Bash)**
 ```bash
-# Bash (Linux/macOS)
-./scripts/project-manager.sh create client-acme 8080 "ACME Corp Website"
-./scripts/project-manager.sh start client-acme
-./scripts/project-manager.sh list
-./scripts/project-manager.sh ports
+# Start project (run from project directory)
+./scripts/project-manager.sh start
+
+# Stop project
+./scripts/project-manager.sh stop
+
+# View status
+./scripts/project-manager.sh status
+
+# View logs
+./scripts/project-manager.sh logs
+
+# Restart project
+./scripts/project-manager.sh restart
+
+# MailHog email testing
+./scripts/project-manager.sh mailhog-start
+./scripts/project-manager.sh mailhog-stop
+
+# Help
+./scripts/project-manager.sh help
 ```
 
 ### Single Project Setup

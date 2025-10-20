@@ -4,62 +4,92 @@
 
 A modern WordPress development stack using **WP Starter 3.0** (Bedrock-style architecture), **Docker Compose**, **Nginx**, **PHP 8.2**, **MySQL 8.0**, and **Redis**.
 
-## ⚡ Quick Start
+## ⚡ Quick Start - Simplified Multi-Project Approach
 
-### 🎯 Choose Your Approach
+### 🎯 **New Project Setup (5 minutes)**
 
-| **Multi-Project Setup** ⭐ | **Single Project** |
-|---------------------------|-------------------|
-| **Perfect for:** Agencies, teams, freelancers | **Perfect for:** Single site development |
-| **Run:** Unlimited concurrent WordPress sites | **Run:** One WordPress site |
-| **Isolation:** Complete project separation | **Resources:** Lower resource usage |
-| **Setup:** 5 minutes | **Setup:** 2 minutes |
-
-### 🚀 Recommended: Multi-Project Setup
-
-Run unlimited WordPress projects simultaneously with complete isolation:
-
-```powershell
-# Windows - Create multiple projects instantly
-scripts\project-manager.ps1 create client-acme 8080 "ACME Corp Website"
-scripts\project-manager.ps1 start client-acme
-# → Access: http://localhost:8080
-
-scripts\project-manager.ps1 create personal-blog 8090 "Personal Blog" 
-scripts\project-manager.ps1 start personal-blog
-# → Access: http://localhost:8090
-```
+Each WordPress project is a **copy of this repository** with its own configuration:
 
 ```bash
-# Linux/macOS - Same functionality with bash
-./scripts/project-manager.sh create client-acme 8080 "ACME Corp Website"
-./scripts/project-manager.sh start client-acme
-# → Access: http://localhost:8080
+# 1. Copy repository for new project
+cp -r /path/to/wp-starter ~/my-projects/client-website
+cd ~/my-projects/client-website
 
-./scripts/project-manager.sh create personal-blog 8090 "Personal Blog"
-./scripts/project-manager.sh start personal-blog
-# → Access: http://localhost:8090
+# 2. Configure environment (set unique ports!)
+cp .env.example .env
+nano .env  # Edit COMPOSE_PROJECT_NAME and ports
+
+# 3. Start project
+./scripts/project-manager.sh start    # Linux/macOS
+# OR
+scripts\project-manager.ps1 start     # Windows
 ```
 
-**📚 [Complete Multi-Project Guide →](docs/setup/multi-project.md)**
-
-### Traditional Single Project
-
-For single WordPress site development:
+### 🌐 **Multiple Projects Running Simultaneously**
 
 ```bash
-# 1. Clone & setup
-git clone <your-repo-url> && cd BB-WP_Template
-cp config/.env.example .env
+# Project 1: Client Website
+cd ~/projects/client-website         # HTTP_PORT=8080
+./scripts/project-manager.sh start   # → http://localhost:8080
 
-# 2. Start Docker environment  
-docker-compose up -d
+# Project 2: Personal Blog  
+cd ~/projects/personal-blog          # HTTP_PORT=8090
+./scripts/project-manager.sh start   # → http://localhost:8090
 
-# 3. Access your site
-# → WordPress: http://localhost:8080
-# → Admin: http://localhost:8080/wp/wp-admin  
-# → phpMyAdmin: http://localhost:8081
+# Project 3: E-commerce Store
+cd ~/projects/ecommerce-store        # HTTP_PORT=8100  
+./scripts/project-manager.sh start   # → http://localhost:8100
 ```
+
+**🔑 Key Benefits:**
+- ✅ **Complete isolation** - separate databases, files, configurations
+- ✅ **Simple setup** - copy repo, edit .env, start
+- ✅ **No port conflicts** - you control all port assignments
+- ✅ **Cross-platform** - same workflow on Windows, Linux, macOS
+
+### 🔌 **Port Configuration Examples**
+
+**Important**: Each project needs unique ports in `.env`:
+
+```bash
+# Project 1: Client Website
+HTTP_PORT=8080
+PHPMYADMIN_PORT=8081
+MYSQL_PORT=3306
+REDIS_PORT=6379
+
+# Project 2: Personal Blog
+HTTP_PORT=8090  
+PHPMYADMIN_PORT=8091
+MYSQL_PORT=3316
+REDIS_PORT=6389
+
+# Project 3: E-commerce
+HTTP_PORT=8100
+PHPMYADMIN_PORT=8101  
+MYSQL_PORT=3326
+REDIS_PORT=6399
+```
+
+### � **Optional: Shared Email Testing**
+
+**One-time setup** for MailHog (shared across all projects):
+```bash
+# Start shared MailHog service
+docker-compose -f docker-compose.mailhog.yml up -d
+
+# Access: http://localhost:8025
+# All projects can now send/test emails
+```
+
+### 🛠️ **Project Management Commands**
+
+| Platform | Start | Stop | Status |
+|----------|--------|-------|---------|
+| **Linux/macOS** | `./scripts/project-manager.sh start` | `./scripts/project-manager.sh stop` | `./scripts/project-manager.sh status` |
+| **Windows** | `scripts\project-manager.ps1 start` | `scripts\project-manager.ps1 stop` | `scripts\project-manager.ps1 status` |
+
+**📖 [Complete Setup Guide →](QUICKSTART.md)**
 
 **📚 [Single Project Guide →](docs/setup/quickstart.md)**
 

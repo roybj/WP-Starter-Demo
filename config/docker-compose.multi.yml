@@ -72,14 +72,15 @@ services:
       WP_DEBUG_LOG: ${WP_DEBUG_LOG:-true}
       WP_DEBUG_DISPLAY: ${WP_DEBUG_DISPLAY:-false}
       
-      # Mail Configuration (MailHog)
-      MAIL_HOST: mailhog
+      # Mail Configuration (Shared MailHog - optional)
+      MAIL_HOST: shared-mailhog
       MAIL_PORT: 1025
       MAIL_USERNAME: null
       MAIL_PASSWORD: null
       MAIL_ENCRYPTION: null
     networks:
       - wp-network
+      - wordpress-shared
     labels:
       - "project=${COMPOSE_PROJECT_NAME:-wp}"
       - "service=wordpress"
@@ -151,19 +152,8 @@ services:
       - "project=${COMPOSE_PROJECT_NAME:-wp}"
       - "service=phpmyadmin"
 
-  # MailHog (Email Testing)
-  mailhog:
-    image: mailhog/mailhog:latest
-    container_name: ${COMPOSE_PROJECT_NAME:-wp}-mailhog
-    restart: unless-stopped
-    ports:
-      - "${MAILHOG_WEB_PORT:-8025}:8025"    # Web interface
-      - "${MAILHOG_SMTP_PORT:-1025}:1025"   # SMTP server
-    networks:
-      - wp-network
-    labels:
-      - "project=${COMPOSE_PROJECT_NAME:-wp}"
-      - "service=mailhog"
+# MailHog is now optional - use docker-compose.mailhog.yml for shared email testing
+# Run: docker-compose -f docker-compose.mailhog.yml up -d
 
   # WP-CLI (Dynamic naming)
   wp-cli:
@@ -215,8 +205,11 @@ volumes:
   node_modules:
     name: ${COMPOSE_PROJECT_NAME:-wp}_node_modules
 
-# Isolated Network per project
+# Networks: Isolated per project + shared for MailHog
 networks:
   wp-network:
     name: ${COMPOSE_PROJECT_NAME:-wp}_network
     driver: bridge
+  wordpress-shared:
+    external: true
+    name: wordpress-shared

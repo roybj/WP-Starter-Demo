@@ -1,107 +1,69 @@
-# 📚 Documentation Index
+# 📚 WordPress Multi-Project Starter - Documentation
 
-Welcome to the WordPress WP Starter documentation! This directory contains all guides, references, and setup instructions organized for easy navigation.
+> **Day 0 ready WordPress development environment for any operating system**
 
-## 🚀 Getting Started
+## 🚀 Quick Navigation
 
-**New to this repository?** Start here:
+### 🎯 **Getting Started**
+- **[Quick Setup Guide](../QUICKSTART.md)** - 5-minute setup for new projects
+- **[Environment Configuration](setup/environment.md)** - .env file configuration and port management
+- **[Cross-Platform Setup](setup/cross-platform.md)** - Windows, Linux, and macOS instructions
 
-| Document | Purpose | Time | Audience |
-|----------|---------|------|----------|
-| **[Quick Start](setup/quickstart.md)** | Traditional single-project setup | 2 min | Beginners |
-| **[Multi-Project Setup](setup/multi-project.md)** ⭐ | Run multiple WordPress sites simultaneously | 5 min | **Recommended** |
-| **[Developer Checklist](setup/developer-checklist.md)** | Complete onboarding verification | 15 min | All developers |
+### 💻 **Development Workflows**
+- **[Multi-Project Management](workflows/multi-project.md)** - Running multiple WordPress sites simultaneously  
+- **[Daily Development](workflows/development.md)** - Common tasks and best practices
+- **[Email Testing](workflows/email-testing.md)** - Using MailHog for email development
 
-## 📖 Comprehensive Guides
+### 🛠️ **Advanced Topics**
+- **[Docker Architecture](advanced/docker-architecture.md)** - Container setup and networking
+- **[Troubleshooting](advanced/troubleshooting.md)** - Common issues and solutions
+- **[Custom Configuration](advanced/customization.md)** - Extending the setup for specific needs
 
-**Deep dive into advanced workflows:**
-
-| Document | Purpose | Audience |
-|----------|---------|----------|
-| **[Contributing Guide](guides/contributing.md)** | Team collaboration & code standards | Team members |
-| **[Multi-Project Workflows](guides/multi-project-workflows.md)** | Professional multi-site management | Agencies, freelancers |
-| **[Docker Guide](guides/docker-guide.md)** | Container architecture & debugging | DevOps, advanced users |
-
-## 📋 Reference Documentation
-
-**Technical references and checklists:**
-
-| Document | Purpose | Audience |
-|----------|---------|----------|
-| **[Setup Summary](reference/setup-summary.md)** | Complete file inventory & comparison | Team leads |
-| **[Publish Checklist](reference/publish-checklist.md)** | Pre-deployment verification | Maintainers |
-| **[Documentation Updates](reference/documentation-updates.md)** | Change history & improvements | Contributors |
+### 📋 **Reference**
+- **[Available Commands](reference/commands.md)** - Complete command reference
+- **[Port Configuration](reference/ports.md)** - Port allocation strategies
+- **[File Structure](reference/file-structure.md)** - Project organization
 
 ---
 
-## 🎯 Quick Navigation
+## 🏆 **Key Features**
 
-### By Use Case
+✅ **Day 0 Ready** - Copy repo, edit .env, start developing  
+✅ **Multi-Project** - Run unlimited WordPress sites simultaneously  
+✅ **Cross-Platform** - Identical workflow on Windows, Linux, macOS  
+✅ **Complete Isolation** - Separate databases, files, and configurations  
+✅ **Optional Services** - MailHog email testing when needed  
+✅ **Simple Management** - Intuitive scripts for all lifecycle operations
 
-**🏢 For Agencies & Teams:**
-1. [Multi-Project Setup](setup/multi-project.md) → Get unlimited concurrent sites
-2. [Multi-Project Workflows](guides/multi-project-workflows.md) → Team collaboration strategies  
-3. [Contributing Guide](guides/contributing.md) → Code standards & workflows
+## 🎯 **Architecture Overview**
 
-**👤 For Individual Developers:**
-1. [Quick Start](setup/quickstart.md) → Single WordPress site
-2. [Developer Checklist](setup/developer-checklist.md) → Verify your setup
-3. [Docker Guide](guides/docker-guide.md) → Understand the architecture
+```
+Copy Repository → Configure .env → Start Project → Develop
+       ↓               ↓              ↓           ↓
+   New folder    Set unique ports   Docker up   WordPress ready
+```
 
-**🚀 For Project Managers:**
-1. [Setup Summary](reference/setup-summary.md) → Understand capabilities  
-2. [Publish Checklist](reference/publish-checklist.md) → Deployment readiness
-3. [Multi-Project Workflows](guides/multi-project-workflows.md) → Resource management
+### **Multi-Project Example:**
+```bash
+~/projects/
+├── client-website/     # Port 8080, MySQL 3306
+├── personal-blog/      # Port 8090, MySQL 3316  
+└── ecommerce-store/    # Port 8100, MySQL 3326
+```
 
-### By Experience Level
-
-**🆕 Beginner (New to WordPress/Docker):**
-- [Quick Start](setup/quickstart.md) - Safe, traditional approach
-- [Developer Checklist](setup/developer-checklist.md) - Verify everything works
-- [Docker Guide](guides/docker-guide.md) - Understand what's running
-
-**💪 Intermediate (Some WordPress/Docker experience):**
-- [Multi-Project Setup](setup/multi-project.md) - **Recommended starting point**
-- [Contributing Guide](guides/contributing.md) - Learn team workflows
-- [Setup Summary](reference/setup-summary.md) - Compare all options
-
-**🚀 Advanced (Professional/Team lead):**
-- [Multi-Project Workflows](guides/multi-project-workflows.md) - Advanced strategies
-- [Publish Checklist](reference/publish-checklist.md) - Production considerations  
-- [Documentation Updates](reference/documentation-updates.md) - See latest improvements
+Each project is **completely independent** with its own:
+- WordPress installation and database
+- Themes, plugins, and uploads
+- Configuration and environment settings
+- Docker containers and networking
 
 ---
 
-## 🔧 Configuration & Scripts
+## 📖 **Documentation Structure**
 
-**Quick access to tools:**
+- **`setup/`** - Initial configuration and environment setup
+- **`workflows/`** - Development processes and daily tasks  
+- **`advanced/`** - Docker internals, troubleshooting, customization
+- **`reference/`** - Command lists, configuration options, file layouts
 
-- **Scripts**: See `../scripts/` directory for project management tools
-- **Configuration**: See `../config/` directory for environment templates  
-- **Docker**: See `../docker/` directory for container configuration
-
----
-
-## 🆘 Getting Help
-
-**Can't find what you need?**
-
-1. **Search this directory** - Use your editor's search to find specific topics
-2. **Check the main README** - [`../README.md`](../README.md) for repository overview
-3. **Review setup options** - Compare single vs multi-project approaches
-4. **Follow the quickstart** - When in doubt, start with [Multi-Project Setup](setup/multi-project.md)
-
----
-
-## 📊 Documentation Statistics
-
-| Category | Files | Total Size | Purpose |
-|----------|-------|------------|---------|
-| **Setup Guides** | 3 files | ~15 KB | Get up and running quickly |
-| **Comprehensive Guides** | 3 files | ~45 KB | Deep dive into workflows |  
-| **Reference Docs** | 3 files | ~12 KB | Technical details & checklists |
-| **Total** | **9 files** | **~72 KB** | Complete documentation coverage |
-
----
-
-**🎯 Start with [Multi-Project Setup](setup/multi-project.md) for the best experience!**
+**Need help?** Start with the [Quick Setup Guide](../QUICKSTART.md) or browse the specific topic you need above.

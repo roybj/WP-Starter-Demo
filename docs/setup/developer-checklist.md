@@ -2,6 +2,25 @@
 
 Use this checklist when setting up your local development environment.
 
+## 🎯 Choose Your Setup Method
+
+### ⭐ Option A: Multi-Project Setup (Recommended)
+
+**Perfect for:** Agencies, freelancers, teams working on multiple client projects
+
+**Benefits:**
+- ✅ Run multiple WordPress sites simultaneously  
+- ✅ Complete project isolation
+- ✅ No port conflicts
+- ✅ Professional workflow
+- ✅ Team collaboration ready
+
+**📚 [Multi-Project Quick Start →](multi-project.md)**
+
+### Option B: Single Project Setup (Traditional)
+
+**Perfect for:** Single WordPress site development, learning, simple projects
+
 ---
 
 ## ✅ Pre-Setup (5 minutes)
@@ -29,8 +48,9 @@ Use this checklist when setting up your local development environment.
   cd BB-WP_Template
   ```
 
-- [ ] **Review QUICKSTART.md**
-  - Takes 2 minutes to read
+- [ ] **Review setup guides**
+  - [ ] **Multi-Project**: [multi-project.md](multi-project.md) ⭐ Recommended
+  - [ ] **Single Project**: [quickstart.md](quickstart.md) - Traditional setup
 
 - [ ] **Copy environment template**
   ```bash
@@ -118,7 +138,47 @@ Use this checklist when setting up your local development environment.
 
 ---
 
-## 📖 Learn the Project (15-20 minutes)
+## � Multi-Project Verification (Optional)
+
+**If you chose multi-project setup, verify it works:**
+
+- [ ] **Test project creation**
+  ```powershell
+  # Create a test project
+  .\project-manager.ps1 create test-site 8090 "Test Site"
+  ```
+
+- [ ] **Verify project starts**
+  ```powershell
+  .\project-manager.ps1 start test-site
+  ```
+
+- [ ] **Check project isolation**
+  - [ ] http://localhost:8090 (Test site)
+  - [ ] http://localhost:8091 (Test phpMyAdmin)
+  - Should be completely separate from main project
+
+- [ ] **Test port management**
+  ```powershell
+  .\project-manager.ps1 ports
+  .\project-manager.ps1 list
+  ```
+
+- [ ] **Clean up test project**
+  ```powershell
+  .\project-manager.ps1 stop test-site
+  # Optional: Remove test project directory
+  ```
+
+- [ ] **Understand team workflow**
+  - [ ] Each team member gets different port ranges
+  - [ ] Projects are completely isolated
+  - [ ] Multiple client sites can run simultaneously
+  - [ ] Perfect for agency/freelance work
+
+---
+
+## �📖 Learn the Project (15-20 minutes)
 
 - [ ] **Read README.md**
   - Architecture overview
@@ -126,7 +186,7 @@ Use this checklist when setting up your local development environment.
   - Common tasks
   - Troubleshooting guide
 
-- [ ] **Read CONTRIBUTING.md**
+- [ ] **Read [../guides/contributing.md](../guides/contributing.md)**
   - Git workflow
   - Code standards
   - Commit message format
@@ -293,9 +353,9 @@ You're ready to start developing!
 ## 📞 Need Help?
 
 - **Setup issues**: See README.md → Troubleshooting
-- **Development questions**: See CONTRIBUTING.md
-- **Git workflow**: See CONTRIBUTING.md → Development Workflow
-- **Docker issues**: See DOCKER-README.md
+- **Development questions**: See [../guides/contributing.md](../guides/contributing.md)
+- **Git workflow**: See [../guides/contributing.md](../guides/contributing.md) → Development Workflow
+- **Docker issues**: See [../guides/docker-guide.md](../guides/docker-guide.md)
 - **Team members**: Ask in your communication channel
 
 ---

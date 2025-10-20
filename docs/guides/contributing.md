@@ -2,12 +2,25 @@
 
 Thank you for contributing to this WordPress WP Starter project! This guide will help you get started and ensure consistency across the development team.
 
-## 📋 Table of Contents
+## 🎯 Multi-Project Development
 
-- [Getting Started](#getting-started)
+This repository supports **multiple concurrent WordPress projects** - perfect for teams working on multiple client sites simultaneously.
+
+**New to multi-project setup?** � [Multi-Project Quick Start Guide](QUICKSTART-MULTI-PROJECT.md)
+
+## �📋 Table of Contents
+
+### 🚀 Getting Started
+- [Multi-Project Setup](#multi-project-setup) ⭐ **Recommended for teams**
+- [Single Project Setup](#single-project-setup) - Traditional approach
 - [Development Workflow](#development-workflow)
+
+### 👥 Team Collaboration  
+- [Multi-Project Team Workflow](#multi-project-team-workflow)
 - [Code Standards](#code-standards)
 - [Committing Changes](#committing-changes)
+
+### 🛠️ Development
 - [Plugin & Theme Development](#plugin--theme-development)
 - [Database Changes](#database-changes)
 - [Testing](#testing)
@@ -15,7 +28,36 @@ Thank you for contributing to this WordPress WP Starter project! This guide will
 
 ---
 
-## Getting Started
+## Multi-Project Setup
+
+### 🚀 Quick Start (Recommended for Teams)
+
+**Step 1: Get the project manager**
+```bash
+# Clone this repository once as a template
+git clone <repo-url> wordpress-template
+cd wordpress-template
+```
+
+**Step 2: Create your first project**
+```powershell
+# Windows PowerShell
+.\project-manager.ps1 create client-acme 8080 "ACME Corp Website"
+.\project-manager.ps1 start client-acme
+# Access: http://localhost:8080
+```
+
+**Step 3: Create more projects as needed**
+```powershell
+.\project-manager.ps1 create personal-blog 8090 "My Blog"
+.\project-manager.ps1 create ecommerce-site 8100 "E-commerce Project"
+```
+
+📚 **[Complete Multi-Project Guide →](MULTI-PROJECT-GUIDE.md)**
+
+---
+
+## Single Project Setup
 
 ### 1. Prerequisites
 
@@ -219,6 +261,137 @@ git checkout develop
 git pull origin develop
 git merge feature/your-feature-name
 git push origin develop
+```
+
+---
+
+## Multi-Project Team Workflow
+
+### 🏢 Agency/Team Collaboration
+
+**Scenario**: Multiple developers working on different client projects simultaneously.
+
+#### 1. Project Assignment Strategy
+
+```powershell
+# Lead Developer: Assign port ranges to team members
+# Developer A: Ports 8080-8089 (Client projects)
+.\project-manager.ps1 create client-acme 8080 "ACME Corp"
+.\project-manager.ps1 create client-techcorp 8081 "Tech Corp"
+
+# Developer B: Ports 8090-8099 (E-commerce projects)  
+.\project-manager.ps1 create ecommerce-fashion 8090 "Fashion Store"
+.\project-manager.ps1 create ecommerce-electronics 8091 "Electronics Store"
+
+# Developer C: Ports 8100-8109 (Internal projects)
+.\project-manager.ps1 create company-blog 8100 "Company Blog"
+.\project-manager.ps1 create internal-tools 8101 "Internal Tools"
+```
+
+#### 2. Daily Development Workflow
+
+```powershell
+# Morning: Start active client projects
+.\project-manager.ps1 start client-acme      # Developer working on ACME
+.\project-manager.ps1 start client-techcorp  # Developer working on Tech Corp
+
+# During day: Switch between projects seamlessly
+# http://localhost:8080 - ACME Corp demo
+# http://localhost:8081 - Tech Corp development
+
+# Evening: Stop resource-intensive projects
+.\project-manager.ps1 stop client-techcorp
+# Keep ACME running for tomorrow's client meeting
+```
+
+#### 3. Client Presentations
+
+```powershell
+# Before client meeting
+.\project-manager.ps1 start client-acme
+
+# During presentation
+# Share screen: "Let me show you the site at http://localhost:8080"
+# Client sees live development progress
+
+# After meeting
+.\project-manager.ps1 stop client-acme  # Free up resources
+```
+
+#### 4. Code Collaboration
+
+```bash
+# Each project has separate Git repository
+cd ~/wordpress-projects/client-acme
+git init
+git remote add origin <client-acme-repo>
+git push -u origin main
+
+cd ~/wordpress-projects/client-techcorp  
+git init
+git remote add origin <client-techcorp-repo>
+git push -u origin main
+
+# Developers collaborate on specific client projects
+# No mixing of client codebases
+```
+
+#### 5. Resource Management
+
+```powershell
+# Check system resources
+.\project-manager.ps1 status
+
+# Stop unused projects during intensive work
+.\project-manager.ps1 list
+.\project-manager.ps1 stop old-project
+
+# Clean up completed projects
+.\project-manager.ps1 clean
+```
+
+### 🎯 Team Best Practices
+
+#### Port Assignment Convention
+
+| Developer | Port Range | Project Types |
+|-----------|------------|---------------|
+| **Lead/Senior** | 8080-8089 | Client reviews, demonstrations |
+| **Developer A** | 8090-8099 | Frontend projects |  
+| **Developer B** | 8100-8109 | Backend/API projects |
+| **Developer C** | 8110-8119 | E-commerce projects |
+| **Intern/Junior** | 8120-8129 | Learning/practice projects |
+
+#### Communication Protocol
+
+```powershell
+# Share project status in team chat
+.\project-manager.ps1 ports
+# "Current projects: client-acme (8080), ecommerce-site (8090)"
+
+# Before client calls
+# "Starting ACME demo on port 8080 for 2PM meeting"
+
+# Resource conflicts
+# "Need port 8080 for client demo - can someone move their test site?"
+```
+
+#### Project Handoffs
+
+```powershell
+# Developer A to Developer B project handoff
+# 1. Document current project state
+.\project-manager.ps1 ports > project-handoff.txt
+
+# 2. Stop project locally  
+.\project-manager.ps1 stop client-acme
+
+# 3. Developer B creates same project
+.\project-manager.ps1 create client-acme 8090 "ACME Corp - Handoff"
+
+# 4. Pull latest code
+cd ~/wordpress-projects/client-acme
+git pull origin develop
 ```
 
 ---

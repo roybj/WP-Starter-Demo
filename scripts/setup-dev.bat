@@ -78,12 +78,12 @@ if exist ".env" (
     )
 )
 
-if not exist ".env.example" (
-    echo %RED%✗ .env.example not found!%RESET%
+if not exist "config\.env.example" (
+    echo %RED%✗ config\.env.example not found!%RESET%
     exit /b 1
 )
 
-copy .env.example .env >nul
+copy config\.env.example .env >nul
 echo %GREEN%✓ .env created from template%RESET%
 echo %YELLOW%⚠ Review .env and update if needed%RESET%
 echo.

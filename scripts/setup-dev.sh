@@ -74,12 +74,12 @@ fi
 if [ ! -f ".env" ]; then
     print_header "Setting up Environment Configuration"
     
-    if [ ! -f ".env.example" ]; then
-        print_error ".env.example not found!"
+    if [ ! -f "config/.env.example" ]; then
+        print_error "config/.env.example not found!"
         exit 1
     fi
     
-    cp .env.example .env
+    cp config/.env.example .env
     print_success ".env created from template"
     print_warning "Review .env and update if needed"
     echo "Editor: nano .env"

@@ -17,11 +17,18 @@ Closes #123 (replace with actual issue number)
 
 ## ✅ Testing
 
+### Single Project Testing
 - [ ] Tested locally in Docker environment
 - [ ] No database migrations required
 - [ ] No breaking changes
 - [ ] All containers running (`docker-compose ps`)
 - [ ] Verified in browser (http://localhost:8080)
+
+### Multi-Project Testing (if applicable)
+- [ ] Tested project manager scripts (`.\project-manager.ps1`)
+- [ ] Verified project isolation (multiple projects running)
+- [ ] No port conflicts between projects
+- [ ] Each project accessible on different ports
 
 ## 📦 Changes Made
 
@@ -48,6 +55,8 @@ docker-compose exec wordpress wp cache flush
 
 - [ ] Code follows project standards (see CONTRIBUTING.md)
 - [ ] Comments added for complex logic
+- [ ] Documentation updated for multi-project support (if needed)
+- [ ] Both single and multi-project setups tested (if applicable)
 - [ ] Documentation updated if needed
 - [ ] `.env` is NOT included in commits
 - [ ] No hardcoded credentials or URLs

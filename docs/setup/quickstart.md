@@ -1,6 +1,26 @@
-# ⚡ Quick Start (2 minutes)
+# ⚡ Quick Start Guide
 
-Get up and running in just 2 minutes!
+Choose your preferred setup method:
+
+## 🎯 Choose Your Setup
+
+### Option A: Multi-Project Setup (⭐ Recommended)
+
+**Perfect for agencies, freelancers, or multiple client projects**
+
+Run unlimited WordPress sites simultaneously on different ports:
+
+**📚 [Multi-Project Quick Start Guide](multi-project.md)**
+
+- ✅ Multiple WordPress sites at once
+- ✅ No port conflicts  
+- ✅ Complete project isolation
+- ✅ Professional workflow
+- ✅ Team-friendly architecture
+
+### Option B: Single Project Setup (Traditional)
+
+**For single WordPress site development**
 
 ## Prerequisites
 
@@ -87,9 +107,11 @@ docker-compose exec wordpress wp theme list
 
 ## Need Help?
 
-- **Full documentation**: See [README.md](README.md)
-- **Development guide**: See [CONTRIBUTING.md](CONTRIBUTING.md)
-- **Setup issues**: Check [README.md #troubleshooting](README.md#troubleshooting)
+- **Multi-Project Setup**: See [multi-project.md](multi-project.md) ⭐
+- **Complete Guide**: See [../guides/multi-project-workflows.md](../guides/multi-project-workflows.md)
+- **Full documentation**: See [../../README.md](../../README.md)
+- **Development guide**: See [../guides/contributing.md](../guides/contributing.md)
+- **Setup issues**: Check [../../README.md #troubleshooting](../../README.md#getting-help)
 - **Docker issues**: Check Docker Desktop logs
 
 ## What Got Installed?

@@ -2,6 +2,17 @@
 
 This Docker Compose setup provides a complete local development environment that mirrors the production CloudPanel setup.
 
+## 🆕 Multi-Project Support
+
+This repository now supports **multiple concurrent WordPress projects** with complete Docker isolation:
+
+- ✅ **Run unlimited WordPress sites simultaneously**
+- ✅ **Automatic port assignment** to prevent conflicts
+- ✅ **Complete container isolation** per project
+- ✅ **Independent databases and volumes** per project
+
+**📚 [Multi-Project Setup Guide →](QUICKSTART-MULTI-PROJECT.md)**
+
 ## 🏗️ Architecture Overview
 
 The Docker environment includes:
@@ -14,14 +25,33 @@ The Docker environment includes:
 - **WP-CLI** for WordPress management
 - **Node.js** for asset building
 
-## 🚀 Quick Start
+## 🚀 Quick Start Options
 
-### Prerequisites
+### Option A: Multi-Project Setup (⭐ Recommended)
+
+**For agencies, teams, or multiple client projects:**
+
+```powershell
+# Windows PowerShell - Create multiple isolated projects
+.\project-manager.ps1 create client-acme 8080 "ACME Corp Website"
+.\project-manager.ps1 start client-acme
+# Access: http://localhost:8080
+
+.\project-manager.ps1 create personal-blog 8090 "Personal Blog"
+.\project-manager.ps1 start personal-blog
+# Access: http://localhost:8090
+```
+
+Each project gets completely isolated Docker containers with unique names and ports.
+
+### Option B: Single Project Setup (Traditional)
+
+#### Prerequisites
 - Docker Desktop installed
 - Docker Compose v2+
 - At least 4GB RAM allocated to Docker
 
-### 1. Start the Environment
+#### 1. Start the Environment
 ```bash
 # Clone the repository (if not already done)
 git clone <repository-url>
@@ -34,13 +64,13 @@ docker-compose up -d
 docker-compose logs -f wordpress
 ```
 
-### 2. Access Your Development Site
+#### 2. Access Your Development Site
 - **WordPress Site**: http://localhost:8080
 - **WordPress Admin**: http://localhost:8080/wp/wp-admin/ (admin/admin)
 - **phpMyAdmin**: http://localhost:8081
 - **MailHog**: http://localhost:8025 (email testing)
 
-### 3. Stop the Environment
+#### 3. Stop the Environment
 ```bash
 # Stop all services
 docker-compose down

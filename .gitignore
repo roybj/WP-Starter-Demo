@@ -1,0 +1,91 @@
+# =======================================
+# WordPress WP Starter + Docker .gitignore
+# =======================================
+
+# WordPress Core (auto-installed via Composer)
+/wp/
+!/wp-content/
+
+# Generated Files
+wp-config.php
+.env.cached.php
+.wp-cli.local.yml
+
+# Environment Files (developers use .env.example)
+.env
+.env.*.local
+.env.*.php
+
+# Composer
+/vendor/
+composer.lock
+
+# PHP/IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+*.sublime-project
+*.sublime-workspace
+
+# Node/Build
+/node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+dist/
+build/
+
+# Docker
+.docker/
+docker-compose.override.yml
+
+# WordPress
+/wp-content/uploads/*
+!/wp-content/uploads/.gitkeep
+/wp-content/cache/
+/wp-content/backup*
+/wp-content/upgrade/
+
+# WP-CLI
+.wp-cli.local.yml
+
+# MySQL Data (Docker volumes handled separately)
+/docker/mysql/data/
+
+# Logs
+*.log
+logs/
+
+# Local development scripts
+local-*.sh
+*.local
+
+# Temporary files
+.tmp/
+temp/
+/tmp/
+
+# OS files
+.AppleDouble
+.LSOverride
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+
+# IDE specific
+.editorconfig
+.phpstorm.meta.php
+__MACOSX/
+
+# Testing
+coverage/
+.phpunit.result.cache

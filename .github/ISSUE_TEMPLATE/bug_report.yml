@@ -1,0 +1,114 @@
+name: Bug Report
+description: Report a bug or issue
+title: "[BUG] "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting a bug! Please fill out the form below to help us understand and fix the issue.
+  
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: Clear and concise description of what the bug is
+      placeholder: |
+        Example: WordPress admin throws 502 error when accessing...
+    validations:
+      required: true
+  
+  - type: textarea
+    id: steps-to-reproduce
+    attributes:
+      label: Steps to Reproduce
+      description: Steps to reproduce the behavior
+      placeholder: |
+        1. Start Docker with `docker-compose up -d`
+        2. Navigate to http://localhost:8080/wp/wp-admin
+        3. Click on Plugins menu
+        4. Error occurs...
+    validations:
+      required: true
+  
+  - type: textarea
+    id: expected-behavior
+    attributes:
+      label: Expected Behavior
+      description: What should happen instead?
+      placeholder: Plugin page should load normally
+    validations:
+      required: true
+  
+  - type: textarea
+    id: actual-behavior
+    attributes:
+      label: Actual Behavior
+      description: What actually happens?
+      placeholder: "502 Bad Gateway error displays"
+    validations:
+      required: true
+  
+  - type: dropdown
+    id: environment
+    attributes:
+      label: Environment
+      options:
+        - Docker (Local Development)
+        - Staging Server
+        - Production
+        - Other
+    validations:
+      required: true
+  
+  - type: input
+    id: operating-system
+    attributes:
+      label: Operating System
+      placeholder: "Windows 11, macOS 13, Ubuntu 22.04"
+    validations:
+      required: true
+  
+  - type: textarea
+    id: docker-info
+    attributes:
+      label: Docker Information
+      description: "Run: docker-compose ps (output the containers status)"
+      placeholder: |
+        NAME            IMAGE                COMMAND              SERVICE
+        wp-nginx        nginx:alpine         "/docker-entrypoi... nginx
+        wp-wordpress    wordpress:php8.2     "docker-php-entryp..."  wordpress
+      render: shell
+    validations:
+      required: false
+  
+  - type: textarea
+    id: error-logs
+    attributes:
+      label: Error Logs or Screenshots
+      description: "Include error logs: docker-compose logs -f or screenshot"
+      placeholder: "2025-10-19 20:52:01 [emerg] 1#1: unknown directive..."
+      render: shell
+    validations:
+      required: false
+  
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional Context
+      description: Any other context about the problem?
+      placeholder: Recently updated composer.json, installed new plugin, etc.
+    validations:
+      required: false
+  
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Checklist
+      options:
+        - label: I have checked existing issues for duplicates
+          required: true
+        - label: I have cleared Docker cache and restarted (`docker-compose down -v && docker-compose up -d`)
+          required: false
+        - label: I have reviewed the README.md troubleshooting section
+          required: true

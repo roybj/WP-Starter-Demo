@@ -1,0 +1,104 @@
+{
+  "name": "acme/wp-site",
+  "type": "project",
+  "require": {
+    "php": "^8.1",
+    "johnpbloch/wordpress": "^6.6",
+    "wecodemore/wpstarter": "^3.0",
+    "roots/wordpress-core-installer": "^1.100",
+    "vlucas/phpdotenv": "^5.6",
+    "ffraenz/private-composer-installer": "^5.0"
+  },
+  "extra": {
+    "wordpress-install-dir": "wp",
+    "installer-paths": {
+      "wp/wp-content/plugins/{$name}/": [
+        "type:wordpress-plugin"
+      ],
+      "wp/wp-content/themes/{$name}/": [
+        "type:wordpress-theme"
+      ],
+      "wp/wp-content/mu-plugins/{$name}.php": [
+        "type:wordpress-muplugin"
+      ]
+    },
+    "wpstarter": {
+      "config": {
+        "paths": {
+          "ABSPATH": "wp/",
+          "WP_CONTENT_DIR": "wp-content"
+        }
+      }
+    },
+    "private-composer-installer": {
+      "vendor-dir": "vendor",
+      "tmp-dir": "/tmp",
+      "plugins": {
+        "env": true
+      }
+    }
+  },
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "https://wpackagist.org"
+    },
+    {
+      "type": "package",
+      "package": {
+        "name": "advanced-custom-fields/advanced-custom-fields-pro",
+        "version": "dev-latest",
+        "type": "wordpress-plugin",
+        "dist": {
+          "url": "${ACF_PRO_DOWNLOAD_URL}",
+          "type": "zip"
+        },
+        "require": {
+          "ffraenz/private-composer-installer": "^6.0"
+        },
+        "autoload": {
+          "psr-4": {
+            "ACFPro\\": "src/"
+          }
+        }
+      }
+    },
+    {
+      "type": "package",
+      "package": {
+        "name": "gravityforms/gravityforms",
+        "version": "dev-latest",
+        "type": "wordpress-plugin",
+        "dist": {
+          "url": "${GF_DOWNLOAD_URL}",
+          "type": "zip"
+        },
+        "require": {
+          "ffraenz/private-composer-installer": "^6.0"
+        }
+      }
+    }
+  ],
+  "require-dev": {},
+  "scripts": {
+    "post-create-project-cmd": [
+      "WeCodeMore\\WpStarter\\Composer\\Script::run"
+    ],
+    "post-install-cmd": [
+      "WeCodeMore\\WpStarter\\Composer\\Script::run"
+    ],
+    "post-update-cmd": [
+      "WeCodeMore\\WpStarter\\Composer\\Script::run"
+    ]
+  },
+  "config": {
+    "sort-packages": true,
+    "allow-plugins": {
+      "composer/installers": true,
+      "ffraenz/private-composer-installer": true,
+      "wecodemore/wpstarter": true,
+      "roots/wordpress-core-installer": true
+    }
+  },
+  "prefer-stable": true
+}

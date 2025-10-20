@@ -1,0 +1,54 @@
+# WP-CLI specific Dockerfile
+FROM php:8.2-cli-alpine
+
+# Install system dependencies
+RUN apk add --no-cache \
+    curl \
+    git \
+    mysql-client \
+    freetype-dev \
+    libjpeg-turbo-dev \
+    libpng-dev \
+    libzip-dev \
+    icu-dev \
+    oniguruma-dev \
+    libxml2-dev
+
+# Install PHP extensions
+RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
+    && docker-php-ext-install -j$(nproc) \
+        gd \
+        mysqli \
+        pdo_mysql \
+        zip \
+        intl \
+        mbstring \
+        xml \
+        soap \
+        bcmath
+
+# Install Redis extension
+RUN apk add --no-cache --virtual .phpize-deps $PHPIZE_DEPS \
+    && pecl install redis \
+    && docker-php-ext-enable redis \
+    && apk del .phpize-deps
+
+# Install Composer
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+
+# Install WP-CLI
+RUN curl -O https://raw.githubusercontent.com/wp-cli/wp-cli/v2.8.1/bin/wp-cli.phar \
+    && chmod +x wp-cli.phar \
+    && mv wp-cli.phar /usr/local/bin/wp
+
+# Set working directory
+WORKDIR /var/www/html
+
+# Create wp-cli user to avoid running as root
+RUN addgroup -g 1000 wp-cli && adduser -u 1000 -G wp-cli -s /bin/sh -D wp-cli
+
+# Switch to wp-cli user
+USER wp-cli
+
+# Default command
+CMD ["wp", "--info"]

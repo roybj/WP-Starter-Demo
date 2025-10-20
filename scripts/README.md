@@ -10,18 +10,27 @@ This directory contains all management and automation scripts for the WordPress 
 |--------|----------|---------|
 | **project-manager.ps1** | Windows PowerShell | Full project lifecycle management |
 | **project-manager.bat** | Windows Command Prompt | Basic project management (legacy) |
+| **project-manager.sh** | Linux/macOS Bash | Full project lifecycle management |
 
 #### Usage Examples
 ```powershell
-# PowerShell (Recommended)
+# PowerShell (Windows - Recommended)
 scripts\project-manager.ps1 create client-acme 8080 "ACME Corp Website"
 scripts\project-manager.ps1 start client-acme
 scripts\project-manager.ps1 list
 scripts\project-manager.ps1 ports
 
-# Command Prompt
+# Command Prompt (Windows)
 scripts\project-manager.bat create client-acme 8080 "ACME Corp Website"
 scripts\project-manager.bat start client-acme
+```
+
+```bash
+# Bash (Linux/macOS)
+./scripts/project-manager.sh create client-acme 8080 "ACME Corp Website"
+./scripts/project-manager.sh start client-acme
+./scripts/project-manager.sh list
+./scripts/project-manager.sh ports
 ```
 
 ### Single Project Setup

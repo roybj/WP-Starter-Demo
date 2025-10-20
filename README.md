@@ -30,6 +30,17 @@ scripts\project-manager.ps1 start personal-blog
 # → Access: http://localhost:8090
 ```
 
+```bash
+# Linux/macOS - Same functionality with bash
+./scripts/project-manager.sh create client-acme 8080 "ACME Corp Website"
+./scripts/project-manager.sh start client-acme
+# → Access: http://localhost:8080
+
+./scripts/project-manager.sh create personal-blog 8090 "Personal Blog"
+./scripts/project-manager.sh start personal-blog
+# → Access: http://localhost:8090
+```
+
 **📚 [Complete Multi-Project Guide →](docs/setup/multi-project.md)**
 
 ### Traditional Single Project

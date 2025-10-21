@@ -45,7 +45,7 @@ Use this checklist when setting up your local development environment.
 - [ ] **Clone repository**
   ```bash
   git clone <repo-url>
-  cd BB-WP_Template
+  cd wp-starter-project
   ```
 
 - [ ] **Create shared Docker network (One-time setup)**
@@ -75,15 +75,28 @@ Use this checklist when setting up your local development environment.
   
   **Mac/Linux:**
   ```bash
-  bash setup-dev.sh
-  ```
+  # Copy repository to new project
+  cp -r /path/to/wp-starter ~/my-projects/client-website
+  cd ~/my-projects/client-website
   
-  **Windows:**
-  ```cmd
-  setup-dev.bat
+  # Configure environment
+  cp .env.example .env
+  # Edit .env with your unique ports and project name
+  
+  # Start project  
+  ./scripts/project-manager.sh start
   ```
 
-- [ ] **Wait for completion**
+  **Windows:**
+  ```cmd
+  # Copy repository to new project (or git clone)
+  # Configure environment
+  copy .env.example .env
+  # Edit .env with your unique ports and project name
+  
+  # Start project
+  scripts\project-manager.ps1 start
+  ```- [ ] **Wait for completion**
   - Script will:
     - ✓ Check Docker daemon
     - ✓ Pull images
@@ -184,13 +197,19 @@ Use this checklist when setting up your local development environment.
 
 ---
 
-## �📖 Learn the Project (15-20 minutes)
+## 📖 Learn the Project (15-20 minutes)
 
 - [ ] **Read README.md**
   - Architecture overview
   - Development workflow
   - Common tasks
   - Troubleshooting guide
+
+- [ ] **Understanding the wp-config.php Setup**
+  - [ ] Review `wp-config.php` (project root) - WPStarter-compatible configuration
+  - [ ] Review `wp/wp-config.php` - WP-CLI compatibility layer that redirects to main config
+  - [ ] Understand environment-driven configuration (no hardcoded values)
+  - [ ] Note: This solves WPStarter + WP-CLI compatibility issues
 
 - [ ] **Read [../guides/contributing.md](../guides/contributing.md)**
   - Git workflow

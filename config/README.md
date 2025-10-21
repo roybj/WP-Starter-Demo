@@ -8,9 +8,10 @@ This directory contains all configuration templates and environment files for th
 
 | File | Purpose | Usage |
 |------|---------|--------|
-| **.env.example** | Single project template | `cp config/.env.example .env` |
 | **.env.multi-project** | Multi-project template | Used by project-manager scripts |
 | **.env.production.example** | Production deployment reference | Copy and customize for production |
+
+**Note**: The main `.env.example` is located in the project root directory.
 
 ### Docker Configuration
 
@@ -25,8 +26,8 @@ This directory contains all configuration templates and environment files for th
 For traditional single WordPress site:
 
 ```bash
-# Copy the template
-cp config/.env.example .env
+# Copy the template from project root
+cp .env.example .env
 
 # Customize if needed (optional)
 # Default values work for most local development
@@ -158,7 +159,7 @@ PROJECT_DESCRIPTION="My Personal WordPress Blog"
 cp .env .env.backup
 
 # Update with new template
-cp config/.env.example .env.new
+cp .env.example .env.new
 # Merge your customizations from .env.backup
 
 # For multi-project setups

@@ -230,6 +230,7 @@ docker-compose exec wordpress wp cache flush        # Clear cache
 - **Port conflicts** → Check [port assignments](docs/setup/multi-project.md#port-management)
 - **Container issues** → Review [Docker troubleshooting](docs/guides/docker-guide.md#troubleshooting)
 - **WordPress problems** → See [common solutions](docs/setup/developer-checklist.md)
+- **wp-config.php errors** → This project includes WPStarter-compatible wp-config.php files that work with both WP-CLI and the Bedrock-style directory structure
 
 ### 💬 **Support**
 - Review documentation in [docs/](docs/) directory

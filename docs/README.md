@@ -8,21 +8,16 @@
 - **[Quick Setup Guide](../QUICKSTART.md)** - 5-minute setup for new projects
 - **[Environment Configuration](setup/environment.md)** - .env file configuration and port management
 - **[Cross-Platform Setup](setup/cross-platform.md)** - Windows, Linux, and macOS instructions
+- **[Developer Checklist](setup/developer-checklist.md)** - Step-by-step verification guide
 
 ### 💻 **Development Workflows**
-- **[Multi-Project Management](workflows/multi-project.md)** - Running multiple WordPress sites simultaneously  
-- **[Daily Development](workflows/development.md)** - Common tasks and best practices
-- **[Email Testing](workflows/email-testing.md)** - Using MailHog for email development
+- **[Multi-Project Management](setup/multi-project.md)** - Running multiple WordPress sites simultaneously  
+- **[Multi-Project Workflows](guides/multi-project-workflows.md)** - Advanced team workflows
+- **[Contributing Guide](guides/contributing.md)** - Team collaboration guidelines
 
 ### 🛠️ **Advanced Topics**
-- **[Docker Architecture](advanced/docker-architecture.md)** - Container setup and networking
-- **[Troubleshooting](advanced/troubleshooting.md)** - Common issues and solutions
-- **[Custom Configuration](advanced/customization.md)** - Extending the setup for specific needs
-
-### 📋 **Reference**
-- **[Available Commands](reference/commands.md)** - Complete command reference
-- **[Port Configuration](reference/ports.md)** - Port allocation strategies
-- **[File Structure](reference/file-structure.md)** - Project organization
+- **[Docker Guide](guides/docker-guide.md)** - Container setup, troubleshooting, and networking
+- **[Network Setup](reference/network-setup.md)** - Docker networking configuration
 
 ---
 

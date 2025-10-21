@@ -148,6 +148,8 @@ docker-compose up -d
 your-project/
 ├── .env                    # ← Your custom configuration
 ├── .env.example           # Template
+├── wp-config.php          # ← WPStarter-compatible WordPress config
+├── wp/wp-config.php       # ← WP-CLI compatible redirect
 ├── docker-compose.yml     # Main services
 ├── scripts/               # Management tools
 │   ├── project-manager.sh # Linux/macOS
@@ -156,6 +158,13 @@ your-project/
 ├── wp-content/            # Themes, plugins
 └── docker/                # Container configs
 ```
+
+## ⚙️ **Key Features**
+- **WPStarter Architecture**: Modern Bedrock-style WordPress setup
+- **WP-CLI Compatible**: Includes proper wp-config.php structure for WP-CLI tools
+- **Environment-Driven**: All configuration via .env files (no hardcoded values)
+- **Multi-Project Ready**: Run unlimited WordPress sites simultaneously
+- **Production-Ready**: Nginx + PHP-FPM architecture
 
 ---
 

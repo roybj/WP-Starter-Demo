@@ -72,26 +72,26 @@ Before you start, ensure you have:
 
 **On Mac/Linux:**
 ```bash
-# Clone repository
+```bash
 git clone <repo-url>
-cd BB-WP_Template
+cd wp-starter-project
 
-# Run setup script
-bash setup-dev.sh
-
-# Follow the prompts to complete setup
+# Setup (Mac/Linux)
+cp .env.example .env
+# Edit .env with your unique ports
+./scripts/project-manager.sh start
+```
 ```
 
 **On Windows:**
-```bash
-# Clone repository
+```cmd
 git clone <repo-url>
-cd BB-WP_Template
+cd wp-starter-project
 
-# Run setup script
-setup-dev.bat
-
-# Follow the prompts to complete setup
+# Setup (Windows)
+copy .env.example .env
+# Edit .env with your unique ports
+scripts\project-manager.ps1 start
 ```
 
 ### 3. Verify Setup

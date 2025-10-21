@@ -66,7 +66,7 @@ This shared network is required for:
 ```bash
 # Clone the repository (if not already done)
 git clone <repository-url>
-cd BB-WP_Template
+cd wp-starter-project
 
 # Start all services
 docker-compose up -d

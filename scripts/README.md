@@ -63,18 +63,19 @@ scripts\project-manager.ps1 help
 
 ### Single Project Setup
 
-| Script | Platform | Purpose |
-|--------|----------|---------|
-| **setup-dev.sh** | Mac/Linux | Automated single-project setup |
-| **setup-dev.bat** | Windows | Automated single-project setup |
+**Note**: Single project setup scripts have been removed. Use the project-manager scripts for better multi-project support:
 
-#### Usage Examples
 ```bash
-# Mac/Linux
-scripts/setup-dev.sh
+# Copy repository to new project directory  
+cp -r /path/to/wp-starter ~/my-projects/client-website
+cd ~/my-projects/client-website
 
-# Windows
-scripts\setup-dev.bat
+# Configure and start
+cp .env.example .env
+# Edit .env with your ports and settings
+./scripts/project-manager.sh start    # Linux/macOS
+# OR
+scripts\project-manager.ps1 start     # Windows
 ```
 
 ## 🚀 Getting Started
@@ -86,27 +87,27 @@ scripts\setup-dev.bat
 4. Perfect for agencies, teams, and freelancers
 
 ### For Single Project Development
-1. Use **setup-dev.sh** (Mac/Linux) or **setup-dev.bat** (Windows)
-2. Traditional single WordPress site setup
-3. Lower resource usage, simpler workflow
-4. Good for learning and simple projects
+**Note**: Single project setup scripts have been deprecated. Use project-manager scripts for better multi-project support:
+
+```bash
+# Modern workflow (recommended)
+cp -r /path/to/wp-starter ~/my-project
+cd ~/my-project
+cp .env.example .env
+# Edit .env with your settings
+./scripts/project-manager.sh start
+```
 
 ## 📋 Script Features
 
-### project-manager.ps1 Features
-- ✅ **Cross-platform** PowerShell support
+### project-manager Scripts Features
+- ✅ **Cross-platform** PowerShell and Bash support
 - ✅ **Colored output** for better readability
 - ✅ **Error handling** with helpful messages
 - ✅ **Port conflict detection** and resolution
 - ✅ **Project validation** and verification
 - ✅ **Resource management** and cleanup tools
-
-### setup-dev Scripts Features
-- ✅ **Automated Docker checks** and setup
-- ✅ **Dependency installation** via Composer
-- ✅ **WordPress initialization** and configuration
-- ✅ **Interactive prompts** for custom setup
-- ✅ **Error recovery** and retry mechanisms
+- ✅ **Multi-project support** with isolation
 
 ## 🔧 Customization
 
@@ -150,7 +151,7 @@ Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
 **Script not found:**
 - Ensure you're running from repository root
 - Use relative paths: `scripts\project-manager.ps1`
-- Check file permissions on Mac/Linux: `chmod +x scripts/setup-dev.sh`
+- Check file permissions on Mac/Linux: `chmod +x scripts/project-manager.sh`
 
 **Docker not running:**
 - Start Docker Desktop

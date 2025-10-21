@@ -106,18 +106,18 @@ if ! wp core is-installed --allow-root 2>/dev/null; then
     echo "🔑 Admin credentials: admin/admin"
     
     # Install and activate development plugins
-    echo "📦 Installing development plugins..."
+    # echo "📦 Installing development plugins..."
     
     # Query Monitor for debugging
-    wp plugin install query-monitor --activate --allow-root || true
+    # wp plugin install query-monitor --activate --allow-root || true
     
     # Redis Object Cache (if redis is available)
-    wp plugin install redis-cache --activate --allow-root || true
+    # wp plugin install redis-cache --activate --allow-root || true
     
     # Enable Redis object cache
-    wp redis enable --allow-root || echo "⚠️  Redis cache not enabled (plugin may not be available)"
+    # wp redis enable --allow-root || echo "⚠️  Redis cache not enabled (plugin may not be available)"
     
-    echo "✅ Development plugins installed"
+    # echo "✅ Development plugins installed"
     
     # Set up development theme
     wp theme install twentytwentyfour --activate --allow-root || true

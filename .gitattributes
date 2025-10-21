@@ -1,0 +1,14 @@
+# Shell scripts should always use LF line endings (for Docker/Linux compatibility)
+*.sh text eol=lf
+docker/scripts/* text eol=lf
+
+# Docker files should use LF
+Dockerfile* text eol=lf
+docker-compose*.yml text eol=lf
+
+# PHP files use LF (better for cross-platform development)
+*.php text eol=lf
+
+# Config files use LF
+*.conf text eol=lf
+*.cnf text eol=lf
